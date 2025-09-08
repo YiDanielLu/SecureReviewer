@@ -5,6 +5,9 @@ Identifying and addressing security issues during the early phases of the develo
 
 SecureReviewer is a novel approach designed to enhance LLMs' ability to identify and resolve security-related issues during code review. Specifically, we first construct a dataset tailored for training and evaluating secure code review capabilities. Leveraging this dataset, we fine-tune the LLM to generate code review comments that can effectively identify security issues and provide fix suggestions using our proposed secure-aware fine-tuning strategy. To reduce hallucinations and improve reliability, we integrate Retrieval-Augmented Generation (RAG) to ground generated comments in domain-specific security knowledge. Additionally, we introduce SecureBLEU, a new evaluation metric designed to assess the effectiveness of review comments in addressing security issues.
 
+
+
+
 ## Fair Evaluation Standards
 To ensure fair evaluation, all models are trained/prompted using standardized formats according to our secure code review definition: R = (ST, D, I, A) where ST=Security Type, D=Description, I=Impact, A=Advice.
 
