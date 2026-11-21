@@ -133,3 +133,20 @@ As illustrated in the two example below, BLEU score can be misleading when evalu
 - ❌ Poor impact assessment (doesn't recognize information security implications)
 - ❌ Irrelevant remediation advice (focuses on data handling instead of access control)
 
+
+---
+
+## Harbor parity experiments
+
+This fork (branch `harbor-parity`) adds an API-model runner used for the parity experiments of the
+[Harbor SecureReviewer adapter](https://github.com/harbor-framework/adapters/pull/97). Nothing upstream is
+modified. See [PARITY.md](PARITY.md) for details and results.
+
+```bash
+export ANTHROPIC_API_KEY=... ANTHROPIC_BASE_URL=...   # parity used the 2077ai endpoint, https://app.ppapi.ai/
+pip install nltk==3.9.1 && python -m nltk.downloader wordnet omw-1.4 averaged_perceptron_tagger_eng
+for r in 1 2; do
+  python infer/test_api.py --model claude-haiku-4-5 --out runs/run$r --indices $(cat parity_indices.txt)
+  (cd runs/run$r && python ../../evaluate/SecureBleu.py | tail -2)   # "Average BLEU score" = SecureBLEU
+done
+```
